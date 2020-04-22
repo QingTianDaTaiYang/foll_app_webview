@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>App内嵌页面分享</title>
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <style>
         html,body {
             margin: 0;
@@ -139,6 +138,14 @@
         </div>
 
     </div>
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <!-- 生产环境版本，优化了尺寸和速度 -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+
+    <script src="test.js"></script>
 
     <script>
     var app = new Vue({
@@ -152,6 +159,8 @@
         created:function(){
             function getQueryVariable(variable)
             {
+                console.log(window.location.search)
+
                 var query = window.location.search.substring(1);
                 var vars = query.split("&");
                 console.log(window.location.search)
@@ -166,8 +175,36 @@
                 }
                 return(false);
             }
-            var a = getQueryVariable("share_token")
-            console.log(a)
+            var token_request = getQueryVariable("share_token")
+            console.log(token_request)
+            var eee = encryptsed("","/foll/web/premium/")
+            console.log(eee)
+            $.ajax({
+            url: 'https://xcx-api.foll.net/foll/web/premium',
+            method: 'GET',
+            data: "",
+            headers: {
+            　　'share_token': token_request,
+                'sign': identity,
+            },
+            contentType: 'application/json',
+            beforeSend: function (request) {
+                request.setRequestHeader("Authorization",
+                token_request
+                );
+            },
+            success: function(res) {
+                console.log(res)
+
+            },
+            error: function(err) {
+                console.log(err)
+
+            },
+            complete: function() {
+
+            }
+            })
         },
         methods:{
             invitation:function(){
