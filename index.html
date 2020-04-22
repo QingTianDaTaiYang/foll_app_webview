@@ -105,11 +105,11 @@
             <div class="header-information-box" >
                 <img class="header-information-img" :src="head_portrait" >
                 <div class="header-information">
-                    <div style="display:flex;">
-                        <div>{{username}}</div>
+                    <div style="display:flex;align-items: center;">
+                        <div style="font-size:20px;">{{username}}</div>
                         <img src="img/icon_vip@3x.png" style="width:50px;height:21px;padding-left:10px;">
                     </div>
-                    <div>
+                    <div style="font-size:14px;">
                         到期时间 : {{expiration_time}}
                     </div>
                 </div>
@@ -128,7 +128,7 @@
             <div>
                 <div style="display:flex;font-size:14px;font-weight:600;">
                     分享APP(已邀
-                    <div style="color:red;">{{number_of_people}}</div>
+                    <p style="color:#E82F29;margin:0;">{{number_of_people}}</p>
                     人)
                 </div>
                 <div style="font-size: 12px;">每邀请 1 个新好友注册,可获得 1 天</div>
